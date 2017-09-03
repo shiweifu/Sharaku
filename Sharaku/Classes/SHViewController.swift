@@ -143,19 +143,20 @@ open class SHViewController: UIViewController {
     }
 
     @IBAction func closeButtonTapped() {
-        if let delegate = self.delegate {
-            delegate.shViewControllerDidCancel()
-        }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: { [unowned self] in
+            if let delegate = self.delegate {
+                delegate.shViewControllerDidCancel()
+            }
+        })
     }
 
     @IBAction func doneButtontapped() {
-        if let delegate = self.delegate {
-            delegate.shViewControllerImageDidFilter(image: (imageView?.image)!)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-}
+        dismiss(animated: true, completion: { [unowned self] in
+            if let delegate = self.delegate {
+                delegate.shViewControllerImageDidFilter(image: (self.imageView?.image)!)
+            }
+        })
+    }}
 
 extension  SHViewController: UICollectionViewDataSource, UICollectionViewDelegate
 {
