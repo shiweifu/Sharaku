@@ -64,6 +64,7 @@ open class SHViewController: UIViewController {
             self.view = view
             if let image = self.image {
                 imageView?.image = image
+                imageView?.contentMode = .scaleAspectFit
                 smallImage = resizeImage(image: image)
             }
         }
